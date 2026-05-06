@@ -71,3 +71,25 @@ Thumbs.db
 # Firebase / secrets
 *.json
 .env
+
+# Flutter / build
+build/
+ios/build/
+android/build/
+
+# Dart / Flutter
+.dart_tool/
+.packages
+.pub/
+
+# IDE
+.vscode/
+.idea/
+
+# Sistema
+.DS_Store
+Thumbs.db
+
+# Segredos
+*.json
+.env
