@@ -1,0 +1,77 @@
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:ride_sharing_user_app/features/splash/controllers/config_controller.dart';
+import 'package:ride_sharing_user_app/util/dimensions.dart';
+import 'package:ride_sharing_user_app/util/styles.dart';
+
+class ReservationNoteWidget extends StatelessWidget {
+  final GlobalKey globalKey;
+  const ReservationNoteWidget({super.key, required this.globalKey});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(key: globalKey, children: [
+      const SizedBox(height: Dimensions.paddingSizeExtraLarge),
+
+      Container(
+        decoration: BoxDecoration(
+          color: Theme.of(context).colorScheme.tertiaryContainer.withValues(alpha: 0.1),
+          borderRadius: BorderRadius.circular(Dimensions.paddingSizeSmall)
+        ),
+        padding: EdgeInsets.all(Dimensions.paddingSizeDefault),
+        child: Column(spacing: Dimensions.paddingSizeSmall, crossAxisAlignment: CrossAxisAlignment.start, children: [
+          Text('about_reservation'.tr),
+
+          Row(spacing: Dimensions.paddingSizeSmall, children: [
+            Icon(Icons.info, color: Theme.of(context).colorScheme.tertiaryContainer, size: 16),
+
+            //Expanded(child: Text(
+              //'${'schedule_your_ride_up_to'.tr} ${
+                 // (Get.find<ConfigController>().config?.advanceScheduleBookTimeType == 'days' ? (Get.find<ConfigController>().config?.advanceScheduleBookTime ?? 0) / 86400 :
+                //  Get.find<ConfigController>().config?.advanceScheduleBookTimeType == 'hours' ? (Get.find<ConfigController>().config?.advanceScheduleBookTime ?? 0) / 3600 :
+               //   (Get.find<ConfigController>().config?.advanceScheduleBookTime ?? 0) /60).toInt()
+              //} ${Get.find<ConfigController>().config?.advanceScheduleBookTimeType} ${'in_advance'.tr}',
+              //style: textRegular,
+            //))
+            Expanded(
+                child: Builder(
+                    builder: (context) {
+                      final config = Get.find<ConfigController>().config;
+                      final timeType = config?.advanceScheduleBookTimeType;
+                      final timeValue = config?.advanceScheduleBookTime ?? 0;
+
+                      // Calcular quantos dias baseado no tipo
+                      int dias;
+                      if (timeType == 'days') {
+                        dias = (timeValue / 86400).toInt();
+                      } else if (timeType == 'hours') {
+                        dias = (timeValue / 3600).toInt();
+                      } else {
+                        dias = (timeValue / 60).toInt();
+                      }
+
+                      return Text(
+                        'Agende com até $dias dias de antecedência',
+                        style: textRegular,
+                      );
+                    }
+                )
+            )
+          ]),
+
+          Row(spacing: Dimensions.paddingSizeSmall, children: [
+            Icon(Icons.info, color: Theme.of(context).colorScheme.tertiaryContainer, size: 16),
+
+            Expanded(child: Text('enjoy_free_cancellation_before_your_trip_begins'.tr, style: textRegular))
+          ]),
+
+          Row(spacing: Dimensions.paddingSizeSmall, children: [
+            Icon(Icons.info, color: Theme.of(context).colorScheme.tertiaryContainer, size: 16),
+
+            Expanded(child: Text('if_the_trip_is_cancelled_while_in_progress'.tr, style: textRegular))
+          ]),
+        ]),
+      )
+    ]);
+  }
+}
