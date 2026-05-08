@@ -18,7 +18,6 @@ import 'package:ride_sharing_user_app/theme/dark_theme.dart';
 import 'package:ride_sharing_user_app/theme/light_theme.dart';
 import 'package:ride_sharing_user_app/theme/theme_controller.dart';
 import 'package:ride_sharing_user_app/util/app_constants.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
 

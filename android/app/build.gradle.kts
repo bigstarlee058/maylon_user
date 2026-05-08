@@ -16,6 +16,7 @@ if (keystorePropertiesFile.exists()) {
 android {
     namespace = "com.maylon.rider"
     compileSdk = 36
+    ndkVersion = "28.2.13676358"
 
     compileOptions {
         isCoreLibraryDesugaringEnabled = true
