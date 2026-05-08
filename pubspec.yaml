@@ -71,9 +71,7 @@ flutter:
 
   assets:
     - assets/image/
-    - assets/language/
     - assets/svg/
-    - assets/map/
 
   fonts:
     - family: SFProText
